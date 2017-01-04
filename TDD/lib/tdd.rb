@@ -31,4 +31,34 @@ class Array
 
     result
   end
+
+
+end
+
+def stock_picker(stocks)
+  stocks.combination(2)
+  .to_a.max {|a,b| a[1]-a[0] <=> b[1]-b[0]}.map {|a| stocks.index(a)}
+end
+
+class Game
+  attr_accessor :towers
+  def initialize
+    @towers = [[1, 2, 3], [], []]
+  end
+
+  def move(start, target)
+    raise "start pile is empty" if towers[start].empty?
+    unless towers[target].empty?
+      if towers[target].first < towers[start].first
+        raise "target pile has smaller piece"
+      end
+    end
+
+    towers[target].unshift(towers[start].shift)
+  end
+
+  def won?
+    towers[1] == [1, 2, 3] || towers[2] == [1, 2, 3]
+  end
+
 end

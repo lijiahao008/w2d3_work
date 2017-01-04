@@ -57,7 +57,7 @@ describe "#transpose" do
 
   end
 
-  it "transposes a rectange matrix" do
+  it "transposes a rectangle matrix" do
     matrix = [ [0, 1, 2],
               [3, 4, 5],
               [6, 7, 8],
@@ -86,4 +86,59 @@ describe "#transpose" do
 end
 
 
-describe ""
+describe "#stock_picker" do
+  it "should return the index of the best buy and sell times" do
+    stocks = [2, 4, 9, 20, 6]
+    expect(stock_picker(stocks)).to eq([0, 3])
+  end
+
+  it "the first number should be smaller then the second" do
+    stocks = [2, 4, 9, 20, 6]
+    result = stock_picker(stocks)
+    expect(result[0] < result[1]).to be true
+
+  end
+
+end
+
+
+describe "Game" do
+  subject(:game) { Game.new }
+
+  
+  describe "#move" do
+    it "moves a piece" do
+      game.move(0, 1)
+      expect(game.towers[0].length).to eq(2)
+      expect(game.towers[1].length).to eq(1)
+    end
+
+    it "won't move a piece if the start pile is empty" do
+      expect{ game.move(1, 2) }.to raise_error("start pile is empty")
+    end
+
+    it "won't move a piece if the target top piece is smaller" do
+      game.towers = [[1], [2, 3], []]
+      expect{ game.move(1, 0) }.to raise_error("target pile has smaller piece")
+    end
+
+  end
+
+  describe "#won?" do
+    it "return true if user won" do
+      game.towers = [[], [], [1, 2, 3]]
+      expect(game.won?).to be true
+    end
+
+    it "return false if all piece are on the first tower" do
+      game.towers = [[1, 2, 3], [], []]
+      expect(game.won?).to be false
+    end
+
+    it "return false if the other towers are not complete" do
+      game.towers = [[1], [2, 3], []]
+      expect(game.won?).to be false
+    end
+
+  end
+end
