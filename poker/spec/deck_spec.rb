@@ -16,9 +16,9 @@ describe "Deck" do
       expect(card_strings.uniq).to eq(card_strings)
     end
 
-    it "initializes with 4 suites" do
-      suites = deck.deck.map { |card| card.suite }
-      expect(suites.uniq).to match([:heart, :diamond, :club, :spade])
+    it "initializes with 4 suits" do
+      suits = deck.deck.map { |card| card.suit }
+      expect(suits.uniq).to match([:heart, :diamond, :club, :spade])
     end
 
     it "initialized with correct values" do

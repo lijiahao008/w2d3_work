@@ -5,9 +5,9 @@ describe "Card" do
   subject(:card) { Card.new(2,:heart) }
 
   describe "#initialize" do
-    it "should create a card and set value and suite" do
+    it "should create a card and set value and suit" do
       expect(card.value).to eq(2)
-      expect(card.suite).to eq(:heart)
+      expect(card.suit).to eq(:heart)
     end
   end
 

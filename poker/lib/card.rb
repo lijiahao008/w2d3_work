@@ -1,12 +1,12 @@
 class Card
-  attr_reader :value,:suite
-  def initialize(value,suite)
+  attr_reader :value,:suit
+  def initialize(value,suit)
     @value = value
-    @suite = suite
+    @suit = suit
 
   end
 
   def to_s
-    suite.to_s + " " + value.to_s
+    suit.to_s + " " + value.to_s
   end
 end
